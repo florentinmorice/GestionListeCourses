@@ -10,29 +10,49 @@
 <html>
 <head>
     <title>Panier</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 </head>
 <body>
-<jsp:include page="/WEB-INF/fragments/header.jsp">
-    <jsp:param name="titre" value="PANIER"/>
-</jsp:include>
-
-<h1> Votre Liste </h1>
-<form action="${pageContext.request.contextPath}/panier" method="post"></form>
-<c:forEach items="${listeCourse.listeArticles}" var="article">
-    <li>
-            <input type="hidden" name="id_liste" value="${listeCourse.id}"/>
-            <input type="hidden" name="id_article" value="${article.id}"/>
-            ${article.nom}
-        <input type="checkbox" name="coche" onclick="this.form.submit()" ${article.coche?"checked":""}></input>
-    </li>
-</c:forEach>
-</form>
-
-<a href="${pageContext.request.contextPath}/listes" title="Retour accueil">Retourner à l'accueil</a>
-
-<jsp:include page="/WEB-INF/fragments/footer.jsp">
-    <jsp:param name="titre" value="panier"/>
-</jsp:include>
+<section class="hero is-primary">
+    <div class="hero-body has-text-centered">
+        <p class="title">
+            COURSES
+        </p>
+        <p class="subtitle">
+            Votre panier
+        </p>
+    </div>
+</section>
+<div class="container">
+    <div class="columns is-mobile is-centered">
+        <div class="column is-half">
+            <form action="${pageContext.request.contextPath}/panier" method="post"></form>
+            <article class="panel">
+                <p class="panel-heading">
+                    Votre liste
+                </p>
+                <c:forEach items="${listeCourse.listeArticles}" var="article">
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                        <input type="hidden" name="id_liste" value="${listeCourse.id}"/>
+                        <input type="hidden" name="id_article" value="${article.id}"/>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                                ${article.nom}
+                        </label>
+                    </a>
+                </c:forEach>
+            </article>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="has-text-centered" style="margin-top: 10px">
+    <a href="${pageContext.request.contextPath}/listes" title="Retour accueil">
+        <button class="button is-primary is-hovered">Retour à la page d'accueil</button>
+    </a>
+</div>
 </body>
 </html>

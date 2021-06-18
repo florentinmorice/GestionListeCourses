@@ -54,8 +54,6 @@
 
     </div>
 </footer>
-<jsp:include page="/WEB-INF/fragments/footer.jsp">
-    <jsp:param name="titre" value="LISTES PREDEFINIES"/>
-</jsp:include>
+
 </body>
 </html>

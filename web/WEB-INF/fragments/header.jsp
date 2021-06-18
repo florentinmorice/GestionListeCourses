@@ -1,6 +1,10 @@
-<header>
-    <div class="d-grid gap-2 m-2">
-        <button class="btn btn-primary" type="button">COURSES - ${param.titre}</button>
+<section class="hero is-primary">
+    <div class="hero-body has-text-centered">
+        <p class="title">
+            COURSES
+        </p>
+        <p class="subtitle">
+            ${param.titre}
+        </p>
     </div>
-
-</header>
+</section>

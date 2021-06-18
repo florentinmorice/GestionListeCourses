@@ -20,7 +20,6 @@ public class ServletNouvelleListe extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         ListeCourseManager listeCourseManager = new ListeCourseManager();
         if (req.getServletPath().equals("/nouvelle")) {
-
             int idListeCourse = 0;
             try {
                 if (req.getParameter("id") != null) {
@@ -33,20 +32,20 @@ public class ServletNouvelleListe extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        int id_article = 0;
-        int id_liste = 0;
-        if (req.getParameter("id_article") != null) {
-            id_article = Integer.parseInt(req.getParameter("id_article"));
-            id_liste = Integer.parseInt(req.getParameter("id_liste"));
+            int id_article = 0;
+            int id_liste = 0;
+            if(req.getParameter("id_article") != null){
+                id_article = Integer.parseInt(req.getParameter("id_article"));
+                id_liste = Integer.parseInt(req.getParameter("id_liste"));
 
-            try {
-                listeCourseManager.supprimerArticle(id_article);
-                ListeCourse listeCourse = listeCourseManager.afficherUneListe(id_liste);
-                req.setAttribute("listeCourse", listeCourse);
-            } catch (BLLException bllException) {
-                bllException.printStackTrace();
+                try {
+                    listeCourseManager.supprimerArticle(id_article);
+                    ListeCourse listeCourse = listeCourseManager.afficherUneListe(id_liste);
+                    req.setAttribute("listeCourse", listeCourse);
+                } catch (BLLException bllException) {
+                    bllException.printStackTrace();
+                }
             }
-        }
         req.getRequestDispatcher("WEB-INF/jsp/nouvelleListe.jsp").forward(req, resp);
     }
 
